@@ -22,7 +22,7 @@ class HashTable {
         const address = this._hash(myKey);
         // console.log('address:', address);
         this.data[address] = [myKey, myVal];
-        // console.log('this.data[address]:', this.data[hashed]);
+        // console.log('set bucket:', this.data[address]);
     }
 
     get(myKey) {
