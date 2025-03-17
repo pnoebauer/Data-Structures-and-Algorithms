@@ -35,6 +35,10 @@ class HashTable {
 
         return undefined;
     }
+
+    keys() {
+        return this.data.flatMap((currentBucket) => (currentBucket[0] ? [currentBucket[0]] : []));
+    }
 }
 
 const myHashTable = new HashTable(50);
@@ -42,3 +46,5 @@ myHashTable.set('grapes', 10000);
 console.log('grapes result', myHashTable.get('grapes'));
 myHashTable.set('apples', 9);
 console.log('apples result', myHashTable.get('apples'));
+
+console.log('myHashTable keys', myHashTable.keys());
