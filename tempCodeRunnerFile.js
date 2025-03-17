@@ -18,33 +18,20 @@ class HashTable {
         return hash;
     }
 
-    // get add() {
-    //     return this.a;
-    // }
-
-    // set add(arg1) {
-    //     this.a = arg1;
-    // }
-
     set(myKey, myVal) {
-        const hashed = this._hash(myKey);
-        // console.log('hashed:', hashed);
-        this.data[hashed] = [myKey, myVal];
-        // console.log('this.data[hashed]:', this.data[hashed]);
+        const address = this._hash(myKey);
+        // console.log('address:', address);
+        this.data[address] = [myKey, myVal];
+        // console.log('this.data[address]:', this.data[hashed]);
     }
 
     get(myKey) {
-        // return this.data[this._hash(myKey)]; // return entire entry
-        return this.data[this._hash(myKey)][1]; // return value
+        const address = this._hash(myKey);
+        const currentBucket = this.data[address];
+
+        return currentBucket[1];
     }
 }
-
-// const myHashTable = new HashTable(50);
-// const res = myHashTable.add;
-// console.log(res);
-// myHashTable.add = 5;
-// const res2 = myHashTable.add;
-// console.log(res2);
 
 const myHashTable = new HashTable(50);
 myHashTable.set('grapes', 10000);
