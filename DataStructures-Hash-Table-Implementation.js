@@ -47,4 +47,6 @@ console.log('grapes result', myHashTable.get('grapes'));
 myHashTable.set('apples', 9);
 console.log('apples result', myHashTable.get('apples'));
 
+console.log('myHashTable result', myHashTable.data);
+
 console.log('myHashTable keys', myHashTable.keys());
