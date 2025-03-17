@@ -29,7 +29,11 @@ class HashTable {
         const address = this._hash(myKey);
         const currentBucket = this.data[address];
 
-        return currentBucket[1];
+        if (currentBucket && myKey === currentBucket[0]) {
+            return currentBucket[1];
+        }
+
+        return undefined;
     }
 }
 
