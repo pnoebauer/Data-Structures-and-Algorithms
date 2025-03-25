@@ -28,24 +28,36 @@ class Stack {
     }
 
     push(value) {
-        const newNode = new Node(value);
+        if (!this.top) {
+            this.top = new Node(value);
+            this.bottom = this.top;
 
-        // option (A)
-        newNode.next = this.top;
-        this.top = newNode;
-        /////////
+            this.length = 1;
+        } else {
+            const newNode = new Node(value);
 
-        // option (B)
-        // const holdingPointer = this.top;
-        // this.top = newNode;
-        // this.top.next = holdingPointer;
-        /////////
+            // option (A)
+            newNode.next = this.top;
+            this.top = newNode;
+            /////////
 
-        this.length++;
+            // option (B)
+            // const holdingPointer = this.top;
+            // this.top = newNode;
+            // this.top.next = holdingPointer;
+            // // newNode.next = holdingPointer; // --> could theoretically use newNode.next (same ref as this.top.next)
+            /////////
+
+            this.length++;
+        }
         return this;
     }
 
     pop() {
+        if (!this.top) {
+            return null;
+        }
+
         // option (A)
         const holdingPointer = this.top.next;
         this.top = holdingPointer;
@@ -56,6 +68,7 @@ class Stack {
         /////////
 
         this.length--;
+        if (!this.length) this.bottom = this.top;
         return this;
     }
 }
@@ -74,6 +87,10 @@ stack.pop();
 console.log(stack.peek());
 
 stack.printStack();
-stack.pop();
+console.log(stack.pop());
+console.log(stack.pop());
+console.log(stack.pop());
+console.log(stack.pop());
+stack.printStack();
 
 stack.printStack();
