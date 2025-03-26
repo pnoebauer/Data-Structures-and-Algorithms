@@ -18,56 +18,27 @@ class BinarySearchTree {
         } else {
             let currentNode = this.root;
 
-            // while (!!currentNode.left && !!currentNode.right) {
-            //     if (currentNode.value < value) {
-            //         // go right
-            //         currentNode = currentNode.right;
-            //     } else {
-            //         // go left (TODO: edge case isEqual)
-            //         currentNode = currentNode.left;
-            //     }
-            // }
-
-            // // console.dir(currentNode, { depth: null, colors: true });
-            // if (!currentNode.left && !currentNode.right) {
-            //     if (currentNode.value < value) {
-            //         // insert right
-            //         currentNode.right = new Node(value);
-            //     } else {
-            //         // insert left (TODO: edge case isEqual)
-            //         currentNode.left = new Node(value);
-            //     }
-            // } else if (!currentNode.left) {
-            //     // insert left (TODO: edge case isEqual)
-            //     currentNode.left = new Node(value);
-            // } else if (!currentNode.right) {
-            //     // insert right (TODO: edge case isEqual)
-            //     currentNode.right = new Node(value);
-            // }
-
+            let layer = 0;
             while (currentNode) {
-                // if (currentNode.value === value) { // TODO: edge case isEqual
-                //     console.log('Found node with value', value)
-                //     return currentNode;
-                // } else if (value > currentNode.value) {
+                // console.dir({ value, currentNodeInsert: currentNode }, { depth: null, colors: true });
                 if (value > currentNode.value) {
                     if (!currentNode.right) {
                         currentNode.right = new Node(value);
-                        // could break or keep going - next loop will be equal and hence traversal stops
+                        console.log('Inserted node into layer', layer+1)
                     }
                     currentNode = currentNode.right;
                 } else if (value < currentNode.value) {
                     if (!currentNode.left) {
                         currentNode.left = new Node(value);
-                        // could break or keep going - next loop will be equal and hence traversal stops
                     }
                     currentNode = currentNode.left;
-                } else {
+                } else { // no insertion - currentNode already has value to be inserted
                     return this;
                 }
+                layer++;
             }
 
-            return this;
+            // return this;
         }
     }
 
@@ -97,6 +68,7 @@ class BinarySearchTree {
 const bst = new BinarySearchTree();
 console.dir(bst.insert(10), { depth: null, colors: true });
 
+console.dir(bst.insert(5), { depth: null, colors: true });
 console.dir(bst.insert(5), { depth: null, colors: true });
 
 console.dir(bst.insert(15), { depth: null, colors: true });
