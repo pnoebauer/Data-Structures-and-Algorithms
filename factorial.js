@@ -16,22 +16,24 @@
 //     return recurseFactorial(currentNumber);
 // }
 
-function findFactorialRecursive(number) {
-    let result = 1;
-    function recurseFactorial(number) {
-        // console.log('number', number);
-        if (number === 1) {
-            return result;
-        }
-        result *= number;
-        // console.log('result', result);
-        number--;
+// function findFactorialRecursive(number) {
+//     let result = 1;
+//     function recurseFactorial(number) {
+//         // console.log('number', number);
+//         if (number === 1) {
+//             return result;
+//         }
+//         result *= number;
+//         // console.log('result', result);
+//         number--;
 
-        return recurseFactorial(number);
-    }
+//         return recurseFactorial(number);
+//     }
 
-    return recurseFactorial(number);
-}
+//     return recurseFactorial(number);
+// }
+
+const findFactorialRecursive = (number) => (number === 1 ? number : number * findFactorialRecursive(number - 1));
 
 function findFactorialIterative(number) {
     let result = 1;

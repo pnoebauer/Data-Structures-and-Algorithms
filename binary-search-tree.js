@@ -24,7 +24,7 @@ class BinarySearchTree {
                 if (value > currentNode.value) {
                     if (!currentNode.right) {
                         currentNode.right = new Node(value);
-                        console.log('Inserted node into layer', layer+1)
+                        console.log('Inserted node into layer', layer + 1);
                     }
                     currentNode = currentNode.right;
                 } else if (value < currentNode.value) {
@@ -32,7 +32,8 @@ class BinarySearchTree {
                         currentNode.left = new Node(value);
                     }
                     currentNode = currentNode.left;
-                } else { // no insertion - currentNode already has value to be inserted
+                } else {
+                    // no insertion - currentNode already has value to be inserted
                     return this;
                 }
                 layer++;
@@ -62,7 +63,42 @@ class BinarySearchTree {
         return null;
     }
 
-    delete(value) {}
+    delete(value) {
+        let currentNode = this.root;
+
+        let layer = 0;
+
+        while (currentNode) {
+            if (currentNode.value === value) { // would only happen if root has same value here
+                console.log('Delete: Found node with value', { value, layer });
+                return layer;
+            } else if (value > currentNode.value) {
+                const nextNode = currentNode.right;
+                if (nextNode.value === value) {
+                    //delete
+                    layer++
+                    console.log('Delete next right node', { value, layer });
+
+                    return layer;
+                } else {
+                    currentNode = nextNode; //currentNode.right;
+                }
+            } else if (value < currentNode.value) {
+                const nextNode = currentNode.left;
+                if (nextNode.value === value) {
+                    //delete
+                    layer++
+                    console.log('Delete next left node', { value, layer });
+
+                    
+                    return layer;
+                } else {
+                    currentNode = nextNode; //currentNode.left;
+                }
+            }
+            layer++;
+        }
+    }
 }
 
 const bst = new BinarySearchTree();
@@ -86,3 +122,6 @@ console.dir(bst.insert(2), { depth: null, colors: true });
 console.dir(bst.insert(4), { depth: null, colors: true });
 
 bst.lookup(4);
+
+
+bst.delete(4)
